@@ -7,7 +7,7 @@
     <div class="flex items-center justify-center pt-6">
       <input class="border border p-4 w-[600px] focus:outline-none rounded-l-md" placeholder="Search for answers" />
 
-      <div class="bg-[#03A84E] p-4 border-[#03A84E] border rounded-r-md w-[65px] text-center">
+      <div class="bg-[#03A84E] p-4 border-[#03A84E] border rounded-r-md w-[65px] text-center cursor-pointer">
 		<i class="fa fa-search fa-lg text-white"></i>
 	  </div>
     </div>
@@ -31,6 +31,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "../scss/_variables.scss";
+
+#header-wrapper {
+  height: 330px; /* replace this with your actual header height */
+}
 
 #header-text {
   text-align: center;
