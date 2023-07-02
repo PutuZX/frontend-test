@@ -5,12 +5,12 @@
         v-if="card.enabled == true"
         class="flex flex-col items-center justify-center bg-white pt-8 pb-8 w-[400px] h-[250px] m-3 rounded-md border space-y-5 cursor-pointer"
       >
-        <Play size="70" v-if="card.icon == 'play'" />
-        <Message size="70" v-else-if="card.icon == 'comment'" />
-        <Monitor size="70" v-else-if="card.icon == 'deskop'" />
-        <Link size="70" v-else-if="card.icon == 'link'" />
-        <Gem size="70" v-else-if="card.icon == 'gem'" />
-        <Cart size="70" v-else />
+        <Play :size="70" v-if="card.icon == 'play'" />
+        <Message :size="70" v-else-if="card.icon == 'comment'" />
+        <Monitor :size="70" v-else-if="card.icon == 'deskop'" />
+        <Link :size="70" v-else-if="card.icon == 'link'" />
+        <Gem :size="70" v-else-if="card.icon == 'gem'" />
+        <Cart :size="70" v-else />
         <p class="font-bold text-xl">{{ card.title }}</p>
         <div class="text-center">
           <p class="text-[#03A84E]">{{ card.totalArticle }} articles</p>

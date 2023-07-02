@@ -3,7 +3,11 @@
 		<tawk-header></tawk-header>
 	</div>
 	<div>
-		<router-view></router-view>
+		<Suspense>
+			<template #default>
+				<router-view></router-view>
+			</template>
+		</Suspense>
 	</div>
 </template>
 
