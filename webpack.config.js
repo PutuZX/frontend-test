@@ -7,16 +7,15 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack');
 
 module.exports = {
-//   mode: "development",
   mode: "production",
   performance: {
     hints: process.env.NODE_ENV === "production" ? "warning" : false,
   },
-  entry: ["./src/app.js"],
+  entry: "./src/app.js",
   output: {
-    // path: path.resolve(__dirname, "./dist"),
-    publicPath: "/",
-    // filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/dist/",
+    filename: "bundle.js",
   },
   module: {
     rules: [
@@ -26,7 +25,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ["vue-style-loader", "css-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader"
+        ],
       },
       {
         test: /\.(ttf|eot|woff|woff2)$/,
@@ -40,9 +43,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          process.env.NODE_ENV === "production"
-            ? MiniCssExtractPlugin.loader
-            : "style-loader",
+          MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
         ],
@@ -52,7 +53,7 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: "styles.css",
+      filename: "bundle.css",
     }),
     new webpack.DefinePlugin({
       __VUE_OPTIONS_API__: true,
@@ -65,7 +66,9 @@ module.exports = {
     },
   },
   devServer: {
-    static: path.join(__dirname, "public"),
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
     port: 9001,
     onBeforeSetupMiddleware: function (devServer) {
       if (!devServer) {
