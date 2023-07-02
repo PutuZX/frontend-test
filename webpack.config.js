@@ -4,10 +4,12 @@ const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 const dataObj = require("./data/data.json");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const webpack = require('webpack');
+const webpack = require("webpack");
+const mode = process.env.NODE_ENV || "development";
+const prod = mode === "production";
 
 module.exports = {
-  mode: "production",
+  mode: mode,
   performance: {
     hints: process.env.NODE_ENV === "production" ? "warning" : false,
   },
@@ -26,9 +28,18 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          prod ? MiniCssExtractPlugin.loader : "style-loader",
           "css-loader",
-          "sass-loader"
+          "postcss-loader",
+          "sass-loader",
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          prod ? MiniCssExtractPlugin.loader : "style-loader",
+          "css-loader",
+          "postcss-loader",
         ],
       },
       {
@@ -39,14 +50,6 @@ module.exports = {
             name: "[name].[ext]",
           },
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader",
-        ],
       },
     ],
   },
