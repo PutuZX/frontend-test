@@ -11,8 +11,7 @@ export const useCards = defineStore({
     async fetchCards() {
       try {
         const response = await axios.get(
-        //   "http://localhost:9001/api/categories"
-        "https://frontend-test-navy.vercel.app/api/categories"
+          "/api/categories"
         );
         this.cards = response.data;
       } catch (error) {
@@ -33,8 +32,7 @@ export const useArticles = defineStore({
             try {
               if (this.categoryId) {
                 const response = await axios.get(
-                //   `http://localhost:9001/api/category/${this.categoryId}`
-                `https://frontend-test-navy.vercel.app/api/category/${this.categoryId}`
+                  `/api/category/${this.categoryId}`
                 );
                 this.articles = response.data;
               } else {
