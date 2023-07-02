@@ -7,7 +7,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack');
 
 module.exports = {
-  mode: "development",
+//   mode: "development",
+  mode: "production",
   performance: {
     hints: process.env.NODE_ENV === "production" ? "warning" : false,
   },
