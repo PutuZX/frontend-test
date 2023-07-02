@@ -4,6 +4,7 @@ const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 const dataObj = require("./data/data.json");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const mode = process.env.NODE_ENV || "development";
 const prod = mode === "production";
@@ -61,6 +62,14 @@ module.exports = {
     new webpack.DefinePlugin({
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "public/index.html"),
+          to: path.resolve(__dirname, "dist/index.html"),
+        },
+      ],
     }),
   ],
   resolve: {
