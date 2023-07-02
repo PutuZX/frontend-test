@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import DetailedCategory from "../views/DetailedCategory.vue";
+import NotFound from "../views/404.vue";
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: "/ecommerce-integrations",
     name: "E-commerce Integrations",
     component: DetailedCategory,
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "Not Found",
+    component: NotFound
   },
 ];
 
